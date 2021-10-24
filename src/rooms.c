@@ -32,8 +32,8 @@ void doRoom0() {
 }
 
 void doRoom1() {
-	txtdvd();
 	if(!cKnight) {
+		txtdvd();
 		printf("> A mercenary stands before you.\n> You are unsure of whether or not he is a threat.\n\n");
 		printf("1) Talk to the mercenary\n2) Go south\n3) Attack the mercenary\n? ");
 		action = getAction();
@@ -53,7 +53,27 @@ void doRoom1() {
 				break;
 		}
 	}
-	else if(cKnight) {
+	else if(cKnight && fKnight == 0) {
+		txtdvd();
+		printf("> The mercenary stands before you.\n\n");
+		printf("1) Talk to the mercenary\n2) Go south\n3) Attack the mercenary\n? ");
+		action = getAction();
+		switch(action) {
+			case 1:
+				talkKnight();
+				break;
+			case 2:
+				room = 2;
+				break;
+			case 3:
+				
+				break;
+			default:
+				invalid();
+				break;
+		}
+	}
+	else if(cKnight && fKnight == 1) {
 		printf("> The mercenary stands before you.\n\n");
 		printf("1) Talk to the mercenary\n2) Go south\n3) Attack the mercenary\n? ");
 		action = getAction();
