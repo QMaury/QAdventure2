@@ -1,0 +1,9 @@
+void doRoom0();
+void doRoom1();
+void doRoom2();
+void doRoom3();
+void doRoom4();
+void doRoom5();
+void doRoom6();
+void doRoom7();
+void doRoom8();
