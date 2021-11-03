@@ -47,6 +47,9 @@ int main() {
 			break;
         }
     }
-	/* if ded */
+	while(ded == 1) {
+		printf("> You have failed.\n> Game over.\n");
+		exit(0);
+	}
 	/* else */
 }
