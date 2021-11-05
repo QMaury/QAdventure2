@@ -1,5 +1,6 @@
 # QAdventure2
 Text based adventure game written in C.
+still very buggy and has some typos. it'll get worked out soon :)
 
 # Your quest is to defeat the dark prince, and acquire the crown
 You will face hardships, and will be defeated many times, but none are too difficult for an adventurer like you.
