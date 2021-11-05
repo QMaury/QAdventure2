@@ -6,3 +6,5 @@ void talkSmit();
 void fiteWiz();
 void fiteDraugr();
 void fiteArch();
+void fitePrince();
+void safe();

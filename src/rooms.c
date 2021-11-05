@@ -27,6 +27,14 @@ void doRoom0() {
 		case 3:
 			room = 4;
 			break;
+        case 222: 
+            printf("Salve!\n");
+            break;
+            /* hmm */
+        case 69:
+            key = 1;
+            gold = 1;
+            break;
 		default:
 			invalid();
 			break;
@@ -36,8 +44,9 @@ void doRoom0() {
 void doRoom1() {
 	if(!cKnight) {
 		txtdvd();
-		printf("> A mercenary stands before you.\n> You are unsure of whether or not he is a threat.\n\n");
-		printf("1) Talk to the mercenary\n2) Go south\n3) Attack the mercenary\n? ");
+		printf("> A mercenary stands before you.\n> You are unsure of whether or not he is a threat.\n");
+        printf("> There is also a large metal safe behind the mercenary.\n\n");
+		printf("1) Talk to the mercenary\n2) Go south\n3) Attack the mercenary\n4) Try to open the safe\n? ");
 		action = getAction();
 		switch(action) {
 			case 1:
@@ -50,6 +59,9 @@ void doRoom1() {
 			case 3:
 				fiteKnight();
 				break;
+            case 4:
+                safe();
+                break;
 			default:
 				invalid();
 				break;
@@ -57,8 +69,8 @@ void doRoom1() {
 	}
 	else if(cKnight && fKnight == 0) {
 		txtdvd();
-		printf("> The mercenary stands before you.\n\n");
-		printf("1) Talk to the mercenary\n2) Go south\n? ");
+		printf("> The mercenary stands before you.\n> There is also a large metal safe behind the mercenary.\n\n");
+		printf("1) Talk to the mercenary\n2) Go south\n3) Try to open the safe\n? ");
 		action = getAction();
 		switch(action) {
 			case 1:
@@ -67,6 +79,9 @@ void doRoom1() {
 			case 2:
 				room = 0;
 				break;
+            case 3:
+                safe();
+                break;
 			default:
 				invalid();
 				break;
@@ -75,7 +90,7 @@ void doRoom1() {
 	else if(cKnight && fKnight == 1) {
 		txtdvd();
 		printf("> The mercenary stands before you.\n\n");
-		printf("1) Talk to the mercenary\n2) Go south\n? ");
+		printf("1) Talk to the mercenary\n2) Go south\n3) Try to open the safe\n? ");
 		action = getAction();
 		switch(action) {
 			case 1:
@@ -85,6 +100,7 @@ void doRoom1() {
 				room = 0;
 				break;
 			case 3:
+                safe();
 				break;
 			default:
 				invalid();
@@ -134,7 +150,7 @@ void doRoom2() {
 /* lol goatse stickers */
 void doRoom3() {
 	txtdvd();
-    printf("> In this room there is a blacksmith at his workbench and a large stone door the west\n");
+    printf("> In this room there is a blacksmith at his workbench and a large stone door the west.\n\n");
 	printf("1) Go west\n2) Go south\n3) Talk to blacksmith\n? ");
 	if(cSmit) {
 		/* wtf */
@@ -176,8 +192,8 @@ void doRoom3() {
 }
 
 void doRoom4() {
-	txtdvd();
 	if(wizD == 0) {
+        txtdvd();
 		printf("> You find yourself in a somewhat dreadful room. There is a magician blocking the paths.\n\n");
 		/* note: maybe add another room containing jacket pickup for final boss */
 		/* final room is cold, you cant fight if you chilly */
@@ -196,7 +212,8 @@ void doRoom4() {
 		}
 	}
 	if(wizD == 1) {
-		printf("\n> You find yourself in a somewhat dreadful room. There is a dead magician on the floor.\n\n");
+        txtdvd();
+		printf("> You find yourself in a somewhat dreadful room. There is a dead magician on the floor.\n\n");
 		printf("1) Go west\n2) Go south\n3) Go north\n4) Go east\n? ");
 		action = getAction();
 		switch(action) {
@@ -216,14 +233,14 @@ void doRoom4() {
 				invalid();
 				break;
 			}
+    }
 		
-	}
 }
 
 void doRoom5() {
 	txtdvd();
-	printf("\n\n> You are in an empty room. There are 5 gold pieces on the floor\n");
-	printf("> You take the gold pieces\n");
+	printf("> You are in an empty room. There are 5 gold pieces on the floor\n\n");
+	printf("> You take the gold pieces.\n\n");
 	gold = 1;
 	printf("1) Go north\n? ");	
 	action = getAction();
@@ -238,8 +255,8 @@ void doRoom5() {
 }
 
 void doRoom6() {
-	txtdvd();
     if(draugD == 0) {
+        txtdvd();
         printf("> In this room there is a draugr wielding a sword and shield.\n\n");
         printf("1) Go south\n2) Fight the draugr\n? ");
         action = getAction();
@@ -257,7 +274,8 @@ void doRoom6() {
        
 	}
     if(draugD == 1) {
-        printf("\n> In this room there is a dead draugr on the floor.\n\n");
+        txtdvd();
+        printf("> In this room there is a dead draugr on the floor.\n\n");
         printf("1) Go south\n? ");
         action = getAction();
         switch(action) {
@@ -273,8 +291,8 @@ void doRoom6() {
 }
 
 void doRoom7() {
-	txtdvd();
     if(archD == 0) {
+        txtdvd();
         printf("> In this room there is a archer wielding a bow.\n\n");
         printf("1) Fight the archer\n2) Go west\n? ");
         action = getAction();
@@ -291,13 +309,37 @@ void doRoom7() {
         }
         
 	}
-    if(archD == 1) {
-        printf("> In this room there is a dead archer on the floor.\n");
+    if(archD == 1 && key == 0) {
+        txtdvd();
+        printf("\n> In this room there is a dead archer on the floor.\n> There is a keyring on the dead archer's belt.\n\n");
+        printf("1) Go west\n2) Take the keyring\n? ");
+        action = getAction();
+        switch(action) {
+            case 1:
+                room = 4;
+                break;
+            case 2:
+                key = 1;
+                printf("\n> You take the keyring.\n");
+                cont();
+                break;
+            default:
+                invalid();
+                break;
+        }
+    }
+
+    if(archD == 1 && key == 1) {
+        txtdvd();
+        printf("> In this room there is a dead archer on the floor.\n\n");
         printf("1) Go west\n? ");
         action = getAction();
         switch(action) {
             case 1:
                 room = 4;
+                break;
+            case 2:
+                key = 1;
                 break;
             default:
                 invalid();
@@ -309,7 +351,17 @@ void doRoom7() {
 void doRoom8() {
 	txtdvd();
 	if(key == 1) {
-		printf("EVIL!!!");
+		printf("> You unlock the large stone door and see the dark prince sitting upon his throne, with a rather shiny crown upon his head.\n");
+        printf("\n1) Go east\n2) Fight the dark prince\n? ");
+        action = getAction();
+		switch(action) {
+			case 1:
+				room = 3;
+				break;
+            case 2:
+                fitePrince();
+                break;
+		}
 	}
 	
 	else if(key == 0) {

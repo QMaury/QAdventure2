@@ -13,6 +13,7 @@ extern int wizD;
 extern int gold;
 extern int archD;
 extern int draugD;
+extern int jacket;
 
 /* big brain shit goin on here, huh? */
 extern int kFWin;
