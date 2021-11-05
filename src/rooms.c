@@ -113,7 +113,7 @@ void doRoom2() {
 	txtdvd();
 	if(ghoulD == 0) {
 		printf("> You find yourself in a well lit room.\n");
-		printf("> A ghoul blocks your path to the west.\n\n");
+		printf("> A ghoul blocks your path to the north.\n\n");
 		printf("1) Go east\n2) Fight the ghoul\n? ");
 		action = getAction();
 		switch(action) {
