@@ -14,7 +14,7 @@ int room;
 int action;
 
 int main() {
-	printf("QAdventure2 1.0\n\nIt is recommended you use a pen and paper to draw a map as you play.");
+	printf("QAdventure2 1.0.1\n\nIt is recommended you use a pen and paper to draw a map as you play.");
 	doRoom0();
 	while (!ded && !evild) {
 	switch (room) {
