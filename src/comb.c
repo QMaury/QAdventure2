@@ -16,12 +16,10 @@ int response;
 int kFWin;
 int sword1 = 0;
 int cSmit = 0;
-
 int fKnight = 0; int ghoulD = 0;
 int wizD = 0;
 int draugD = 0;
 int archD = 0;
-
 int jacket = 0;
 
 /* room1 knight */
@@ -176,7 +174,7 @@ void talkSmit() {
 		}
 	}
 
-	if(cSmit == 1) {
+    else if(cSmit == 1) {
 		/* shit, hopefully this works */
 		printf("> \"Hello, boy. What can I do for you?\"\n\n");
 		printf("1) Stop talking\n? "); 
