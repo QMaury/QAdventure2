@@ -7,6 +7,7 @@
 #include "vars.h"
 #include "func.h"
 #include "comb.h"
+#include "map.h"
 
 int cKnight = 0;
 int key = 0; 
@@ -14,6 +15,7 @@ int gold = 0;
 
 void doRoom0() {
 	txtdvd();
+    room = 0;
 	printf("> You are at the entrance to the cave.\n> You can see 3 ways forward\n\n");
 	printf("1) Go north\n2) Go west\n3) Go east\n? ");
 	action = getAction();
@@ -34,6 +36,9 @@ void doRoom0() {
         case 69:
             key = 1;
             gold = 1;
+            break;
+        case 9:
+            mapPrint();
             break;
 		default:
 			invalid();
@@ -62,6 +67,9 @@ void doRoom1() {
             case 4:
                 safe();
                 break;
+            case 9:
+                mapPrint();
+                break;
 			default:
 				invalid();
 				break;
@@ -81,6 +89,9 @@ void doRoom1() {
 				break;
             case 3:
                 safe();
+                break;
+            case 9:
+                mapPrint();
                 break;
 			default:
 				invalid();
@@ -102,6 +113,9 @@ void doRoom1() {
 			case 3:
                 safe();
 				break;
+            case 9:
+                mapPrint();
+                break;
 			default:
 				invalid();
 				break;
@@ -123,6 +137,9 @@ void doRoom2() {
 			case 2:
 				fiteGhoul();
 				break;
+            case 9:
+                mapPrint();
+                break;
 			default:
 				invalid();
 				break;
@@ -140,6 +157,9 @@ void doRoom2() {
 			case 2:
 				room = 0;
 				break;
+            case 9:
+                mapPrint();
+                break;
 			default:
 				invalid();
 				break;
@@ -166,6 +186,9 @@ void doRoom3() {
 			case 3:
 				talkSmit();
 				break;
+            case 9:
+                mapPrint();
+                break;
 			default:
 				invalid();
 				break;
@@ -183,6 +206,9 @@ void doRoom3() {
 			case 3:
 				talkSmit();
 				break;
+            case 9:
+                mapPrint();
+                break;
 			default:
 				invalid();
 				break;
@@ -195,8 +221,6 @@ void doRoom4() {
 	if(wizD == 0) {
         txtdvd();
 		printf("> You find yourself in a somewhat dreadful room. There is a magician blocking the paths.\n\n");
-		/* note: maybe add another room containing jacket pickup for final boss */
-		/* final room is cold, you cant fight if you chilly */
 		printf("1) Fight the magician\n2) Go west\n? ");
 		action = getAction();
 		switch(action) {
@@ -206,6 +230,9 @@ void doRoom4() {
 			case 2:
 				room = 0;
 				break;
+            case 9:
+                mapPrint();
+                break;
 			default:
 				invalid();
 				break;
@@ -229,6 +256,9 @@ void doRoom4() {
 			case 4:
 				room = 7;
 				break;
+            case 9:
+                mapPrint();
+                break;
 			default:
 				invalid();
 				break;
@@ -248,6 +278,9 @@ void doRoom5() {
 			case 1:
 				room = 4;
 				break;
+            case 9:
+                mapPrint();
+                break;
 			default:
 				invalid();
 				break;
@@ -267,6 +300,9 @@ void doRoom6() {
             case 2:
                 fiteDraugr();
                 break;
+            case 9:
+                mapPrint();
+                break;
             default:
                 invalid();
                 break;
@@ -281,6 +317,9 @@ void doRoom6() {
         switch(action) {
             case 1:
                 room = 4;
+                break;
+            case 9:
+                mapPrint();
                 break;
             default:
                 invalid();
@@ -302,6 +341,9 @@ void doRoom7() {
                 break;
             case 2:
                 room = 4;
+                break;
+            case 9:
+                mapPrint();
                 break;
             default:
                 invalid();
@@ -341,6 +383,9 @@ void doRoom7() {
             case 2:
                 key = 1;
                 break;
+            case 9:
+                mapPrint();
+                break;
             default:
                 invalid();
                 break;
@@ -361,6 +406,12 @@ void doRoom8() {
             case 2:
                 fitePrince();
                 break;
+            case 9:
+                mapPrint();
+                break;
+            default:
+                invalid();
+                break;
 		}
 	}
 	
@@ -372,6 +423,13 @@ void doRoom8() {
 			case 1:
 				room = 3;
 				break;
+            case 9:
+                mapPrint();
+                break;
+            default:
+                invalid();
+                break;
+
 		}
 	}
 }

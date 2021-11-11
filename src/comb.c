@@ -17,8 +17,7 @@ int kFWin;
 int sword1 = 0;
 int cSmit = 0;
 
-int fKnight = 0;
-int ghoulD = 0;
+int fKnight = 0; int ghoulD = 0;
 int wizD = 0;
 int draugD = 0;
 int archD = 0;
