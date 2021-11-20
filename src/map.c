@@ -1,136 +1,42 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
+#include "func.h"
 #include "rooms.h"
 #include "vars.h"
-#include "func.h"
+
+char *replace_str(char *str, char *orig, char *rep) {
+  static char buffer[64];
+  char *p;
+
+  if (!(p = strstr(str, orig)))
+    return str;
+
+  strncpy(buffer, str,
+          p - str);
+  buffer[p - str] = '\0';
+
+  sprintf(buffer + (p - str), "%s%s", rep, p + strlen(orig));
+
+  return buffer;
+}
+
+char *mapstr = "\
+                +===+   +===+   +===+   +===+        \n\
+                | 8 |===| 3 |   | 1 |   | 6 |        \n\
+                +===+   +===+   +===+   +===+        \n\
+                          |       |       |          \n\
+                        +===+   +===+   +===+   +===+\n\
+                        | 2 |===| 0 |===| 4 |===| 7 |\n\
+                        +===+   +===+   +===+   +===+\n\
+                                  |       |          \n\
+                                  |     +===+        \n\
+                                        | 5 |        \n\
+                                        +===+        \n";
 
 void mapPrint() {
-    if(room == 0) {
-        printf("\n");
-        printf("+===+   +===+   +===+   +===+        \n");
-        printf("| 8 |===| 3 |   | 1 |   | 6 |        \n");
-        printf("+===+   +===+   +===+   +===+        \n");
-        printf("          |       |       |          \n");
-        printf("        +===+   +===+   +===+   +===+\n");
-        printf("        | 2 |===| X |===| 4 |===| 7 |\n");
-        printf("        +===+   +===+   +===+   +===+\n");
-        printf("                  |       |          \n");
-        printf("                  |     +===+        \n");
-        printf("                        | 5 |        \n");
-        printf("                        +===+        \n");
-    }
-    if(room == 1) {
-        printf("\n");
-        printf("+===+   +===+   +===+   +===+        \n");
-        printf("| 8 |===| 3 |   | X |   | 6 |        \n");
-        printf("+===+   +===+   +===+   +===+        \n");
-        printf("          |       |       |          \n");
-        printf("        +===+   +===+   +===+   +===+\n");
-        printf("        | 2 |===| 0 |===| 4 |===| 7 |\n");
-        printf("        +===+   +===+   +===+   +===+\n");
-        printf("                  |       |          \n");
-        printf("                  |     +===+        \n");
-        printf("                        | 5 |        \n");
-        printf("                        +===+        \n");
-    }
-    if(room == 2) {
-        printf("\n");
-        printf("+===+   +===+   +===+   +===+        \n");
-        printf("| 8 |===| 3 |   | 1 |   | 6 |        \n");
-        printf("+===+   +===+   +===+   +===+        \n");
-        printf("          |       |       |          \n");
-        printf("        +===+   +===+   +===+   +===+\n");
-        printf("        | X |===| 0 |===| 4 |===| 7 |\n");
-        printf("        +===+   +===+   +===+   +===+\n");
-        printf("                  |       |          \n");
-        printf("                  |     +===+        \n");
-        printf("                        | 5 |        \n");
-        printf("                        +===+        \n");
-    }
-    if(room == 3) {
-        printf("\n");
-        printf("+===+   +===+   +===+   +===+        \n");
-        printf("| 8 |===| X |   | 1 |   | 6 |        \n");
-        printf("+===+   +===+   +===+   +===+        \n");
-        printf("          |       |       |          \n");
-        printf("        +===+   +===+   +===+   +===+\n");
-        printf("        | 2 |===| 0 |===| 4 |===| 7 |\n");
-        printf("        +===+   +===+   +===+   +===+\n");
-        printf("                  |       |          \n");
-        printf("                  |     +===+        \n");
-        printf("                        | 5 |        \n");
-        printf("                        +===+        \n");
-    }
-    if(room == 4) {
-        printf("\n");
-        printf("+===+   +===+   +===+   +===+        \n");
-        printf("| 8 |===| 3 |   | 1 |   | 6 |        \n");
-        printf("+===+   +===+   +===+   +===+        \n");
-        printf("          |       |       |          \n");
-        printf("        +===+   +===+   +===+   +===+\n");
-        printf("        | 2 |===| 0 |===| X |===| 7 |\n");
-        printf("        +===+   +===+   +===+   +===+\n");
-        printf("                  |       |          \n");
-        printf("                  |     +===+        \n");
-        printf("                        | 5 |        \n");
-        printf("                        +===+        \n");
-    }
-    if(room == 5) {
-        printf("\n");
-        printf("+===+   +===+   +===+   +===+        \n");
-        printf("| 8 |===| 3 |   | 1 |   | 6 |        \n");
-        printf("+===+   +===+   +===+   +===+        \n");
-        printf("          |       |       |          \n");
-        printf("        +===+   +===+   +===+   +===+\n");
-        printf("        | 2 |===| 0 |===| 4 |===| 7 |\n");
-        printf("        +===+   +===+   +===+   +===+\n");
-        printf("                  |       |          \n");
-        printf("                  |     +===+        \n");
-        printf("                        | X |        \n");
-        printf("                        +===+        \n");
-    }
-    if(room == 6) {
-        printf("\n");
-        printf("+===+   +===+   +===+   +===+        \n");
-        printf("| 8 |===| 3 |   | 1 |   | X |        \n");
-        printf("+===+   +===+   +===+   +===+        \n");
-        printf("          |       |       |          \n");
-        printf("        +===+   +===+   +===+   +===+\n");
-        printf("        | 2 |===| 0 |===| 4 |===| 7 |\n");
-        printf("        +===+   +===+   +===+   +===+\n");
-        printf("                  |       |          \n");
-        printf("                  |     +===+        \n");
-        printf("                        | 5 |        \n");
-        printf("                        +===+        \n");
-    }
-    if(room == 7) {
-        printf("\n");
-        printf("+===+   +===+   +===+   +===+        \n");
-        printf("| 8 |===| 3 |   | 1 |   | 6 |        \n");
-        printf("+===+   +===+   +===+   +===+        \n");
-        printf("          |       |       |          \n");
-        printf("        +===+   +===+   +===+   +===+\n");
-        printf("        | 2 |===| 0 |===| 4 |===| X |\n");
-        printf("        +===+   +===+   +===+   +===+\n");
-        printf("                  |       |          \n");
-        printf("                  |     +===+        \n");
-        printf("                        | 5 |        \n");
-        printf("                        +===+        \n");
-    }
-    if(room == 8) {
-        printf("\n");
-        printf("+===+   +===+   +===+   +===+        \n");
-        printf("| X |===| 3 |   | 1 |   | 6 |        \n");
-        printf("+===+   +===+   +===+   +===+        \n");
-        printf("          |       |       |          \n");
-        printf("        +===+   +===+   +===+   +===+\n");
-        printf("        | 2 |===| 0 |===| 4 |===| 7 |\n");
-        printf("        +===+   +===+   +===+   +===+\n");
-        printf("                  |       |          \n");
-        printf("                  |     +===+        \n");
-        printf("                        | 5 |        \n");
-        printf("                        +===+        \n");
-    }
-    cont();
+  char roomChar=room+'0';
+  printf("\n%s", replace_str(mapstr, &roomChar, "X"));
+  cont();
 }
