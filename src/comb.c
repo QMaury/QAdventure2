@@ -1,10 +1,7 @@
 /* comb.c */
-/* combat encounters and conversation */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
 #include "rooms.h"
 #include "vars.h"
 #include "func.h"
@@ -22,18 +19,12 @@ int draugD = 0;
 int archD = 0;
 int jacket = 0;
 
-/* room1 knight */
-
-/* talk */
 void talkKnight() {
 	if(!cKnight && !fKnight && kFWin == 0) {
 		cKnight = 1;
 		txtdvd();
-		printf("> \"Hello, adventurer. I see you come for the crown as well.\"\n");
-		printf("> \"I would tell you to leave this place, but speaking frankly,");
-		printf("I haven't been having too much luck in here. I'm stuck.\"\n");
-		printf("> \"So, how about this:\"\n> \"We have a hand-to-hand duel, and if you can best me, ");
-		printf("I'll give you my sword.\"\n\n");
+		printf("> \"Hello, adventurer. I see you come for the crown as well.\"\n> \"I would tell you to leave this place, but speaking frankly, I haven't been having too much luck in here.\"\n> \"I'm stuck.\"\n");
+		printf("> \"So, how about this:\"\n> \"We have a hand-to-hand duel, and if you can best me, I'll give you my sword.\"\n\n");
 		
 		printf("1) Yes, duel the knight in hand-to-hand combat\n2) No, leave\n? ");
 		cResp = getAction();
@@ -42,14 +33,15 @@ void talkKnight() {
 				fiteKnight();
 				break;
 			case 2:
-				printf("> \"Very well. Perhaps you'll change your mind later.\"");
+				printf("\n> \"Very well. Perhaps you'll change your mind later.\"\n");
+                cont();
 				break;
 			default:
 				invalid();
 				break;
 		}
 	}
-	else if(cKnight && fKnight && kFWin == 0) {
+	else if(cKnight && !fKnight && kFWin == 0) {
 		cKnight = 1;
 		txtdvd();
 		printf("\"You changed your mind?\"\n\n");
@@ -61,7 +53,8 @@ void talkKnight() {
 				fiteKnight();
 				break;
 			case 2:
-				printf("> \"Very well. Perhaps you'll change your mind later.\"");
+				printf("\n> \"Very well. Perhaps you'll change your mind later.\"\n");
+                cont();
 				break;
 			default:
 				invalid();
@@ -70,14 +63,9 @@ void talkKnight() {
 	}
 	else if(kFWin == 1) {
 		txtdvd();
-		printf("> \"Perhaps you have better luck than me. Put that sword to good use.\"\n\n");
-		printf("1) Continue\n? ");
+		printf("> \"Perhaps you have better luck than me. Put that sword to good use.\"\n");
 		kFWin = 1;
-		cResp = getAction();
-		switch(cResp) {
-			case 1:
-				break;
-		}
+        cont();
 	}
 }
 
@@ -90,10 +78,19 @@ void fiteKnight() {
 		/* actually pointless */
 		printf("1) Punch face\n2) Kick stomach\n? ");
 		fResp = getAction();
-		txtdvd();
-		printf("> You kick the mercenary in the stomach.\n> He falls to the ground with the air knocked out of his lungs.\n> You win the battle.\n\n"); 
-		printf("> \"You've bested me in battle. As promised, I give you my sword.\"\n");
-		printf("> You get the sword!\n");
+        txtdvd();
+        switch(fResp) {
+        case 1:
+            printf("> You punch the mercenary in the face.\n> He falls to the ground dazed, and discombobulated.\n> You win the battle.\n\n"); 
+            printf("> \"You've bested me in battle. As promised, I give you my sword.\"\n");
+            printf("> You get the sword!\n");
+            break;
+        case 2:
+            printf("> You kick the mercenary in the stomach.\n> He falls to the ground with the air knocked out of his lungs.\n> You win the battle.\n\n"); 
+            printf("> \"You've bested me in battle. As promised, I give you my sword.\"\n");
+            printf("> You get the sword!\n");
+            break;
+        }
 		kFWin = 1;
 		sword1 = 1;
 		cont();
@@ -148,7 +145,7 @@ void talkSmit() {
                 /* something fucky happens around here.. I'll fix later - 2021-11-04 */
 				break;
 			case 2:
-				printf("> \"Alright, then. I'll be seeing you.\"\n");
+				printf("> \"Alright, then. I'll be seeing you.\"\n\n");
                 cont();
 				break;
 			default:
@@ -182,7 +179,7 @@ void talkSmit() {
 		cResp = getAction();
 		switch(cResp) {
 			case 1:
-				printf("\n> \"Alright, then. I'll be seeing you.\"\n");
+				printf("\n> \"Alright, then. I'll be seeing you.\"\n\n");
 				break;
 			default:
 				invalid();
@@ -220,6 +217,7 @@ void fiteWiz() {
 		printf("\n> You take your sword and drive it into the heart of the magician.\n> You win the fight.\n");
 		wizD = 1;
 		cont();
+        txtdvd();
 	}
 	else if(sword1 == 1 && cSmit == 0) {
 		printf("\n> You take your sword and stab it into the heart of the magician.\n");
@@ -238,6 +236,7 @@ void fiteDraugr() {
         printf("\n> Your powerful blade slices through the draugr's shield like butter.\n> You make quick work of the beast.\n> You have won the battle.\n");
         draugD = 1;
         cont();
+        doRoom6();
         
     }
     else {

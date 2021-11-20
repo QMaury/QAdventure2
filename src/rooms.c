@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdbool.h>
 
 #include "rooms.h"
 #include "vars.h"
@@ -47,8 +48,8 @@ void doRoom0() {
 }
 
 void doRoom1() {
+    txtdvd();
 	if(!cKnight) {
-		txtdvd();
 		printf("> A mercenary stands before you.\n> You are unsure of whether or not he is a threat.\n");
         printf("> There is also a large metal safe behind the mercenary.\n\n");
 		printf("1) Talk to the mercenary\n2) Go south\n3) Attack the mercenary\n4) Try to open the safe\n? ");
@@ -76,7 +77,6 @@ void doRoom1() {
 		}
 	}
 	else if(cKnight && fKnight == 0) {
-		txtdvd();
 		printf("> The mercenary stands before you.\n> There is also a large metal safe behind the mercenary.\n\n");
 		printf("1) Talk to the mercenary\n2) Go south\n3) Try to open the safe\n? ");
 		action = getAction();
@@ -99,8 +99,7 @@ void doRoom1() {
 		}
 	}
 	else if(cKnight && fKnight == 1) {
-		txtdvd();
-		printf("> The mercenary stands before you.\n\n");
+		printf("> The mercenary stands before you.\n> There is also a large metal safe behind the mercenary.\n\n");
 		printf("1) Talk to the mercenary\n2) Go south\n3) Try to open the safe\n? ");
 		action = getAction();
 		switch(action) {
@@ -125,8 +124,8 @@ void doRoom1() {
 
 void doRoom2() {
 	txtdvd();
+    printf("> You find yourself in a well lit room.\n");
 	if(ghoulD == 0) {
-		printf("> You find yourself in a well lit room.\n");
 		printf("> A ghoul blocks your path to the north.\n\n");
 		printf("1) Go east\n2) Fight the ghoul\n? ");
 		action = getAction();
@@ -146,8 +145,8 @@ void doRoom2() {
 		}
 	}
 	else if(ghoulD == 1) {
-		printf("> You find yourself in a well lit room.\n");
 		printf("> There is a dead ghoul on the floor.\n\n");
+        gold = true;
 		printf("1) Go north\n2) Go east\n? ");
 		action = getAction();
 		switch(action) {
@@ -170,57 +169,33 @@ void doRoom2() {
 /* lol goatse stickers */
 void doRoom3() {
 	txtdvd();
-    printf("> In this room there is a blacksmith at his workbench and a large stone door the west.\n\n");
+    printf("> In this room there is a blacksmith at his workbench and a large stone door to the west.\n\n");
 	printf("1) Go west\n2) Go south\n3) Talk to blacksmith\n? ");
-	if(cSmit) {
-		/* wtf */
-		action = getAction();
-		switch(action) {
-			/* reminder to add one more room, containing an item required to fight final boss */
-			case 1:
-				room = 8;
-				break;
-			case 2:
-				room = 2;
-				break;
-			case 3:
-				talkSmit();
-				break;
-            case 9:
-                mapPrint();
-                break;
-			default:
-				invalid();
-				break;
-		}
-	}
-	else {
-		action = getAction();
-		switch(action) {
-			case 1:
-				room = 8;
-				break;
-			case 2:
-				room = 2;
-				break;
-			case 3:
-				talkSmit();
-				break;
-            case 9:
-                mapPrint();
-                break;
-			default:
-				invalid();
-				break;
-		}
-		
-	}
+    action = getAction();
+    switch(action) {
+        case 1:
+            room = 8;
+            break;
+        case 2:
+            room = 2;
+            break;
+        case 3:
+            talkSmit();
+            break;
+        case 9:
+            mapPrint();
+            break;
+        default:
+            invalid();
+            break;
+    }
 }
 
 void doRoom4() {
+    txtdvd();
+    printf("> You find yourself in a somewhat dreadful room. ");
 	if(wizD == 0) {
-        txtdvd();
-		printf("> You find yourself in a somewhat dreadful room. There is a magician blocking the paths.\n\n");
+		printf("There is a magician blocking the paths.\n\n");
 		printf("1) Fight the magician\n2) Go west\n? ");
 		action = getAction();
 		switch(action) {
@@ -239,8 +214,7 @@ void doRoom4() {
 		}
 	}
 	if(wizD == 1) {
-        txtdvd();
-		printf("> You find yourself in a somewhat dreadful room. There is a dead magician on the floor.\n\n");
+		printf("There is a dead magician on the floor.\n\n");
 		printf("1) Go west\n2) Go south\n3) Go north\n4) Go east\n? ");
 		action = getAction();
 		switch(action) {
@@ -269,28 +243,46 @@ void doRoom4() {
 
 void doRoom5() {
 	txtdvd();
-	printf("> You are in an empty room. There are 5 gold pieces on the floor\n\n");
-	printf("> You take the gold pieces.\n\n");
-	gold = 1;
-	printf("1) Go north\n? ");	
-	action = getAction();
-		switch(action) {
-			case 1:
-				room = 4;
-				break;
-            case 9:
-                mapPrint();
-                break;
-			default:
-				invalid();
-				break;
+    printf("> You are in an empty room. ");
+    if(!gold) {
+        gold = true;
+        printf("There are 5 gold pieces on the floor\n\n");
+        printf("> You take the gold pieces.\n\n");
+        printf("1) Go north\n? ");	
+        action = getAction();
+            switch(action) {
+                case 1:
+                    room = 4;
+                    break;
+                case 9:
+                    mapPrint();
+                    break;
+                default:
+                    invalid();
+                    break;
+            }
 	}
+    else if(gold) {
+        printf("\n\n1) Go north\n? ");	
+        action = getAction();
+            switch(action) {
+                case 1:
+                    room = 4;
+                    break;
+                case 9:
+                    mapPrint();
+                    break;
+                default:
+                    invalid();
+                    break;
+            }
+    }
 }
 
 void doRoom6() {
+    txtdvd();
     if(draugD == 0) {
-        txtdvd();
-        printf("> In this room there is a draugr wielding a sword and shield.\n\n");
+        printf("In this room there is a Draugr wielding a sword and shield.\n\n");
         printf("1) Go south\n2) Fight the draugr\n? ");
         action = getAction();
         switch(action) {
@@ -310,8 +302,7 @@ void doRoom6() {
        
 	}
     if(draugD == 1) {
-        txtdvd();
-        printf("> In this room there is a dead draugr on the floor.\n\n");
+        printf("In this room there is a dead draugr on the floor.\n\n");
         printf("1) Go south\n? ");
         action = getAction();
         switch(action) {
