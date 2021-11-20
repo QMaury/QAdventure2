@@ -171,7 +171,7 @@ void talkSmit() {
 		}
 	}
 
-    else if(cSmit == 1) {
+    else if(cSmit) {
 		/* shit, hopefully this works */
 		printf("> \"Hello, boy. What can I do for you?\"\n\n");
 		printf("1) Stop talking\n? "); 
@@ -186,14 +186,12 @@ void talkSmit() {
 				break;
 		}
 	}
-	else {
+	else if(!cSmit) {
 		printf("> \"Ack! Let me fix that rusty old sword of yours! No charge, for a seasoned adventurer!\"\n\n");
 		printf("1) Yes, upgrade sword\n2) No, don't\n? ");
-		/* add "talk" option l8r */
 		cResp = getAction();
 		switch(cResp) {
 			case 1:
-				/* this is super fucking ghetto and messy but I cannot be fucked to fix it kek */
 				printf("\n> Sword upgraded!\n");	
 				cont();
 				cSmit = 1;
@@ -208,10 +206,6 @@ void talkSmit() {
 		}
 	}
 }
-
-/* reminder to add option to fight blacksmith */
-
-
 void fiteWiz() {
 	if(cSmit == 1) {
 		printf("\n> You take your sword and drive it into the heart of the magician.\n> You win the fight.\n");

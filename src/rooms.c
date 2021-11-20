@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdbool.h>
-
 #include "rooms.h"
 #include "vars.h"
 #include "func.h"
@@ -33,7 +32,6 @@ void doRoom0() {
         case 222: 
             printf("Salve!\n");
             break;
-            /* hmm */
         case 69:
             key = 1;
             gold = 1;
@@ -146,7 +144,6 @@ void doRoom2() {
 	}
 	else if(ghoulD == 1) {
 		printf("> There is a dead ghoul on the floor.\n\n");
-        gold = true;
 		printf("1) Go north\n2) Go east\n? ");
 		action = getAction();
 		switch(action) {
