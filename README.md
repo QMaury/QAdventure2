@@ -1,4 +1,4 @@
-# QAdventure2 1.1.2
+# QAdventure2 1.1.3
 Text based adventure game written in C.
 still very buggy and has some typos. it'll get worked out soon :)
 
@@ -16,4 +16,4 @@ Alternatively, input '9' while in a room to display the in-game map.
 To install, run: `git clone https://github.com/QMaury/QAdventure2.git ; cd QAdventure2 ; make`
  
 # WINDOWS USERS:
-sorry. No windows version yet. If you can compile it yourself, by all means, go ahead but im not doin that shit for you lol get a better operating system
+Eh, it's in the releases
