@@ -58,7 +58,6 @@ void talkKnight() {
 				break;
 			default:
 				invalid();
-				break;
 		}
 	}
 	else if(kFWin == 1) {
@@ -75,22 +74,23 @@ void fiteKnight() {
 	if(cKnight == 1) {
 		fKnight = 1;
 		printf("> \"Very well. Let's begin\"\n\n");
-		/* actually pointless */
+		/* maybe change mercenary encounter completely to be something like the guy who gives the estus flask at the beginning of Dark Souls */
+        /* have it just be the corpse of a knight that you get the sword from then; after you get the keys from archer, he's reanimated as ghoul that you fight */
 		printf("1) Punch face\n2) Kick stomach\n? ");
 		fResp = getAction();
         txtdvd();
         switch(fResp) {
         case 1:
-            printf("> You punch the mercenary in the face.\n> He falls to the ground dazed, and discombobulated.\n> You win the battle.\n\n"); 
-            printf("> \"You've bested me in battle. As promised, I give you my sword.\"\n");
-            printf("> You get the sword!\n");
             break;
         case 2:
-            printf("> You kick the mercenary in the stomach.\n> He falls to the ground with the air knocked out of his lungs.\n> You win the battle.\n\n"); 
+            break;
+        default:
+            printf("> The mercenary punches you in the nose.\n> You fall to the ground and crack your head on the floor.\n> You are dead.\n");
+            ded=1;
+        }
+            printf("> You successfully knock out the mercenary and he falls to the ground dazed and discombobulated.\n> You win the battle.\n\n"); 
             printf("> \"You've bested me in battle. As promised, I give you my sword.\"\n");
             printf("> You get the sword!\n");
-            break;
-        }
 		kFWin = 1;
 		sword1 = 1;
 		cont();
@@ -133,7 +133,7 @@ void fiteGhoul() {
 void talkSmit() {
 	txtdvd();
 	/* honestly, my brain is fucking fried. I forgot why i named the `int` "sword1" instead of just "sword" */
-	if(gold == 1) {
+	if(gold) {
 		printf("1) Upgrade sword - 5 gold pieces\n2) Stop talking\n? ");
 		cResp = getAction();
 		switch(cResp) {
@@ -156,7 +156,7 @@ void talkSmit() {
 
 	}
 
-    else if(sword1 == 2) {
+    else if(gold && sword1 == 2) {
         /* problem down here.. for some reason talkSmit() doesnt finish up there on line 148.. - 2021-11-04 _ 7:44AM */
 		printf("\n>\"Hello, boy. What can I do for you?\"\n\n");
 		printf("1) Stop talking\n? "); 
@@ -172,10 +172,8 @@ void talkSmit() {
 	}
 
     else if(cSmit) {
-		/* shit, hopefully this works */
 		printf("> \"Hello, boy. What can I do for you?\"\n\n");
 		printf("1) Stop talking\n? "); 
-		/* add "talk" option l8r */
 		cResp = getAction();
 		switch(cResp) {
 			case 1:
@@ -207,25 +205,27 @@ void talkSmit() {
 	}
 }
 void fiteWiz() {
+    txtdvd();
 	if(cSmit == 1) {
-		printf("\n> You take your sword and drive it into the heart of the magician.\n> You win the fight.\n");
+		printf("> You take your sword and drive it into the heart of the magician.\n> You win the fight.\n");
 		wizD = 1;
 		cont();
         txtdvd();
 	}
 	else if(sword1 == 1 && cSmit == 0) {
-		printf("\n> You take your sword and stab it into the heart of the magician.\n");
+		printf("> You take your sword and stab it into the heart of the magician.\n");
 		printf("> The shoddy blade bounces off of the magician's armour.\n");
 		ded = 1;	
 	}
-	else if(sword1 == 0) {
-		printf("\n> Without any proper weaponry to defend yourself with, you are unable to fight.\n");
+	else if(!sword1) {
+		printf("> Without any proper weaponry to defend yourself with, you are unable to fight.\n");
 		printf("> The magician casts a spell to turn you into a slug "/* hmmm */"and steps on you.\n");
 		ded = 1;
 	}
 }
 
 void fiteDraugr() {
+    txtdvd();
     if(sword1 == 2) { 
         printf("\n> Your powerful blade slices through the draugr's shield like butter.\n> You make quick work of the beast.\n> You have won the battle.\n");
         draugD = 1;
@@ -240,12 +240,13 @@ void fiteDraugr() {
 }   
 
 void fiteArch() {
+    txtdvd();
     if(draugD == 0) {
         printf("\n> You begin to sprint at the archer, and before you can even get close to him, he shoots you in the heart with an arrow.\n");
         ded = 1;
     }
     if(draugD == 1) {
-        printf("\n> You begin to sprint at the archer with your shield in front of you.\n> The archer tries to stop you with hs arrows, but they bounce");
+        printf("> You begin to sprint at the archer with your shield in front of you.\n> The archer tries to stop you with hs arrows, but they bounce");
         printf(" off your shield. You get close enough to the archer to attack, and you drive your sword into his heart.\n");
         printf("> You have won the battle\n");
         /* reminder to do the thing */
@@ -264,11 +265,13 @@ void fitePrince() {
             if(jacket == 1) {
                 printf("\n> You begin to lunge at the dark prince, and with lightning speed he turns back around to face you and casts a cold wind spell.\n");
                 printf("> Good thing you had your jacket on, otherwise you would've been frozen like a statue.\n");
+                cont();
                 printf("\n> Not expecting you to survive the cold wind, the prince let his guard down after casting the spell, giving you an opening to attack!\n");
+                cont();
                 printf("\n> You quickly lop the head off the prince, and his crown falls off his severed head and into your hands.\n> You've acquired the crown of the dark prince.\n");
                 cont();
                 txtdvd();
-                printf("> Thank you for playing QAdventure!\n\n");
+                printf("> Thank you for playing QAdventure2!\n\n");
                 exit(0);
             }
             else {
@@ -278,7 +281,7 @@ void fitePrince() {
             }
             break;
         case 2:
-            printf("\n\n> You hold your ground. You raise your shield up, while the dark prince, walks closer, sword in hand.\n");
+            printf("\n\n> You hold your ground. You raise your shield up while the dark prince walks closer, sword in hand.\n");
             printf("> The dark prince strikes your shield with the force of a hundred men. Your shield is instantly broken in half.\n");
             printf("> You now see an opening while the prince regains his strength. You can flank to the left-hand path or to the right-hand path to deliver a killing blow.\n");
             printf("1) Left\n2) Right\n? ");
@@ -294,7 +297,7 @@ void fitePrince() {
                     printf("> his crown falls off his severed head and into your hands.\n> You've acquired the crown of the dark prince.\n\n");
                     cont();
                     txtdvd();
-                    printf("> Thank you for playing QAdventure!\n\n");
+                    printf("> Thank you for playing QAdventure!2\n\n");
                     exit(0);
                     break;
             break;
@@ -304,7 +307,7 @@ void fitePrince() {
                
 
 void safe() {
-    if(jacket == 0) {
+    if(!jacket) {
         if(key == 0) {
             txtdvd();
             printf("> The safe won't open. It seems you need a key.\n");
@@ -318,7 +321,7 @@ void safe() {
             cont();
         }
     }
-    if(jacket == 1) {
+    else if(jacket) {
         txtdvd();
         printf("> You've already opened the safe and taken the jacket.\n");
         cont();

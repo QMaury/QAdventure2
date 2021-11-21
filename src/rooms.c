@@ -278,8 +278,8 @@ void doRoom5() {
 
 void doRoom6() {
     txtdvd();
-    if(draugD == 0) {
-        printf("In this room there is a Draugr wielding a sword and shield.\n\n");
+    if(!draugD) {
+        printf("> In this room there is a Draugr wielding a sword and shield.\n\n");
         printf("1) Go south\n2) Fight the draugr\n? ");
         action = getAction();
         switch(action) {
@@ -298,8 +298,8 @@ void doRoom6() {
         }
        
 	}
-    if(draugD == 1) {
-        printf("In this room there is a dead draugr on the floor.\n\n");
+    else if(draugD) {
+        printf("> In this room there is a dead draugr on the floor.\n\n");
         printf("1) Go south\n? ");
         action = getAction();
         switch(action) {
@@ -341,7 +341,7 @@ void doRoom7() {
 	}
     if(archD == 1 && key == 0) {
         txtdvd();
-        printf("\n> In this room there is a dead archer on the floor.\n> There is a keyring on the dead archer's belt.\n\n");
+        printf("> In this room there is a dead archer on the floor.\n> There is a keyring on the dead archer's belt.\n\n");
         printf("1) Go west\n2) Take the keyring\n? ");
         action = getAction();
         switch(action) {
