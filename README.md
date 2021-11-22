@@ -1,4 +1,4 @@
-# QAdventure2 1.2.7
+# QAdventure2 1.3.9
 Text based adventure game written in C.
 still very buggy and has some typos. it'll get worked out soon :)
 
