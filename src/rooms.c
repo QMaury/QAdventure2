@@ -17,11 +17,28 @@ void dRoom() {
     printf("> You find yourself in a somewhat dreadul room. ");
 }
 
+void Qexit() {
+    txtdvd();
+    printf("> Exit?\n\n1) Yes\n2) No\n? ");
+    action=getAction();
+    switch(action) {
+        case 1:
+            printf("\n> Goodbye!");
+            cont();
+            exit(0);
+            break;
+        case 2:
+            break;
+        default:
+            invalid();
+    }
+}
+
 void doRoom0() {
 	txtdvd();
     room = 0;
 	printf("> You are at the entrance to the cave.\n> You can see 3 ways forward\n\n");
-	printf("1) Go north\n2) Go west\n3) Go east\n? ");
+	printf("1) Go north\n2) Go west\n3) Go east\n4) Go south\n? ");
 	action = getAction();
 	switch(action) {
 		case 1:
@@ -33,6 +50,9 @@ void doRoom0() {
 		case 3:
 			room = 4;
 			break;
+        case 4:
+            Qexit();
+            break;
         case 9:
             mapPrint();
             break;

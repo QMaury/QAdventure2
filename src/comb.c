@@ -103,6 +103,7 @@ void fiteKnight() {
 	else {
 		fKnight = 1;
 		printf("> The mercenary equips his sword, and stabs you through the belly.\n");
+        cont();
 		ded=1;
 	}
 }
@@ -116,6 +117,7 @@ void fiteGhoul() {
 	}
 	else {
 		printf("> Without any proper weaponry to defend yourself with, you're quickly torn apart.\n");
+        cont();
 		ded = 1;
 	}
 }
@@ -199,14 +201,17 @@ void fiteWiz() {
 		cont();
         doRoom4();
 	}
-	else if(!cSmit == 0) {
+	else if(!cSmit && sword1) {
 		printf("> You take your sword and stab it into the heart of the magician.\n");
-		printf("> The shoddy blade bounces off of the magician's armour.\n");
+		printf("> The shoddy blade bounces off of the magician's magic armour.\n");
+        printf("> He casts a spell to turn you into a slug and then steps on you.\n");
+        cont();
 		ded = 1;	
 	}
 	else if(!sword1) {
 		printf("> Without any proper weaponry to defend yourself with, you are unable to fight.\n");
 		printf("> The magician casts a spell to turn you into a slug "/* hmmm */"and steps on you.\n");
+        cont();
 		ded = 1;
 	}
 }
@@ -222,6 +227,7 @@ void fiteDraugr() {
     }
     else {
         printf("\n\n> Your sword fails to pierce through the draugr's shield.\n> Your flimsy blade bounces off the shield and the draugr drives his sword into your abdomen.\n");
+        cont();
         ded = 1;
     }
 }   
@@ -230,6 +236,7 @@ void fiteArch() {
     txtdvd();
     if(draugD == 0) {
         printf("\n> You begin to sprint at the archer, and before you can even get close to him, he shoots you in the heart with an arrow.\n");
+        cont();
         ded = 1;
     }
     if(draugD == 1) {
@@ -262,6 +269,7 @@ void fitePrince() {
             else {
                 printf("\n> You begin to lunge at the dark prince, and with lightning speed he turns back around to face you and casts a cold wind spell.\n");
                 printf("> Without anything to protect you, you're instantly frozen like an ice cube.\n");
+                cont();
                 ded = 1;
             }
             break;
@@ -275,6 +283,7 @@ void fitePrince() {
                 case 1:
                     printf("\n\n> You flank to the left, and somehow the dark prince predicted this attack as he strikes you faster than you can blink.\n");
                     printf("> You have been sliced into 2 pieces by the dark prince.");
+                    cont();
                     ded = 1;
                     break;
                 case 2:

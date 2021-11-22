@@ -15,7 +15,8 @@ int room;
 int action;
 
 int main() {
-	printf("QAdventure2 1.2.8\n\nIt is recommended you use a pen and paper to draw a map as you play.");
+    ded=0, room=0, sword1=0, kFWin=0, cSmit=0, ghoulD=0, fKnight=0, archD, jacket=0, key=0, wizD, evild, gold=0, draugD;
+	printf("QAdventure2 1.3.9\n\nIt is recommended you use a pen and paper to draw a map as you play.");
 	doRoom0();
 	while (!ded && !evild) {
 	switch (room) {
@@ -48,7 +49,24 @@ int main() {
 			break;
         }
         if(ded==1) {
-            printf("> You have failed.\n> Game over.\n");
+            txtdvd();
+            printf("> You have failed.\n> Game over.\n\n1) Try again?\n2) No. Exit\n? ");
+            action=getAction();
+            switch(action) {
+                case 1:
+                    printf("\n\n");
+                    main();
+                    ded=0;
+                    break;
+                case 2:
+                    printf("\nGoodbye!");
+                    cont();
+                    exit(0);
+                    break;
+                default:
+                    invalid();
+                    break;
+            }
         } 
     }
 }
