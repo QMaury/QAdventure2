@@ -1,20 +1,21 @@
 /* main.c */
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <unistd.h>
-
 #include "rooms.h"
 #include "vars.h"
 #include "func.h"
 #include "comb.h"
 
-int ded = 0;
-int evild = 0;
+int ded=0;
+int win=0;
+int evild=0;
 int room;
 int action;
 
 int main() {
-	printf("QAdventure2 1.2.6\n\nIt is recommended you use a pen and paper to draw a map as you play.");
+	printf("QAdventure2 1.2.8\n\nIt is recommended you use a pen and paper to draw a map as you play.");
 	doRoom0();
 	while (!ded && !evild) {
 	switch (room) {
@@ -46,11 +47,10 @@ int main() {
 			doRoom8();
 			break;
         }
+        if(ded==1) {
+            printf("> You have failed.\n> Game over.\n");
+        } 
     }
-	while(ded == 1) {
-		printf("> You have failed.\n> Game over.\n");
-		exit(0);
-	}
 }
 
 /* "I'll play it later anon and tell you what I think. There better be anime tiddies" - /g/ Anon - 2021/11/12 7:55 */

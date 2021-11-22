@@ -1,4 +1,5 @@
 extern int ded;
+extern int win;
 extern int evild;
 extern int room;
 extern int action;

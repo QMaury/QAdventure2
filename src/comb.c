@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdbool.h>
 #include "rooms.h"
 #include "vars.h"
 #include "func.h"
@@ -19,6 +20,9 @@ int draugD = 0;
 int archD = 0;
 int jacket = 0;
 
+void swUp() {
+    printf("\n> Sword upgraded!\n");
+}
 void talkKnight() {
 	if(!cKnight && !fKnight && kFWin == 0) {
 		cKnight = 1;
@@ -99,21 +103,8 @@ void fiteKnight() {
 	else {
 		fKnight = 1;
 		printf("> The mercenary equips his sword, and stabs you through the belly.\n");
-		ded = 1;
+		ded=1;
 	}
-}
-/* kknight rematch */
-void remtchKnight() {
-	txtdvd();
-	printf("> \"Very well. Let's begin\"\n\n");
-	printf("1) Kick stomach\n? ");
-	fResp = getAction();
-	txtdvd();
-		printf("> \"You've bested me in battle. As promised, I give you my sword.\"\n");
-		printf("> \nYou get the sword!\n");
-		kFWin = 1;
-		sword1 = 1;
-		cont();
 }
 /* fight ghoul1 */
 void fiteGhoul() {
@@ -132,17 +123,14 @@ void fiteGhoul() {
 /* talk blacksmith */
 void talkSmit() {
 	txtdvd();
-	/* honestly, my brain is fucking fried. I forgot why i named the `int` "sword1" instead of just "sword" */
-	if(gold) {
+	if(gold && sword1==1) {
 		printf("1) Upgrade sword - 5 gold pieces\n2) Stop talking\n? ");
 		cResp = getAction();
 		switch(cResp) {
 			case 1:
-				/* might not work */
-                printf("\n> Sword upgraded!\n");
+                swUp();
 				sword1 = 2;
                 cont();
-                /* something fucky happens around here.. I'll fix later - 2021-11-04 */
 				break;
 			case 2:
 				printf("> \"Alright, then. I'll be seeing you.\"\n\n");
@@ -156,8 +144,7 @@ void talkSmit() {
 
 	}
 
-    else if(gold && sword1 == 2) {
-        /* problem down here.. for some reason talkSmit() doesnt finish up there on line 148.. - 2021-11-04 _ 7:44AM */
+    else if(sword1==2) {
 		printf("\n>\"Hello, boy. What can I do for you?\"\n\n");
 		printf("1) Stop talking\n? "); 
 		cResp = getAction();
@@ -190,7 +177,7 @@ void talkSmit() {
 		cResp = getAction();
 		switch(cResp) {
 			case 1:
-				printf("\n> Sword upgraded!\n");	
+                swUp();
 				cont();
 				cSmit = 1;
 				break;
@@ -210,9 +197,9 @@ void fiteWiz() {
 		printf("> You take your sword and drive it into the heart of the magician.\n> You win the fight.\n");
 		wizD = 1;
 		cont();
-        txtdvd();
+        doRoom4();
 	}
-	else if(sword1 == 1 && cSmit == 0) {
+	else if(!cSmit == 0) {
 		printf("> You take your sword and stab it into the heart of the magician.\n");
 		printf("> The shoddy blade bounces off of the magician's armour.\n");
 		ded = 1;	
@@ -249,7 +236,6 @@ void fiteArch() {
         printf("> You begin to sprint at the archer with your shield in front of you.\n> The archer tries to stop you with hs arrows, but they bounce");
         printf(" off your shield. You get close enough to the archer to attack, and you drive your sword into his heart.\n");
         printf("> You have won the battle\n");
-        /* reminder to do the thing */
         archD = 1;
         cont();
     }
@@ -271,8 +257,7 @@ void fitePrince() {
                 printf("\n> You quickly lop the head off the prince, and his crown falls off his severed head and into your hands.\n> You've acquired the crown of the dark prince.\n");
                 cont();
                 txtdvd();
-                printf("> Thank you for playing QAdventure2!\n\n");
-                exit(0);
+                end();  
             }
             else {
                 printf("\n> You begin to lunge at the dark prince, and with lightning speed he turns back around to face you and casts a cold wind spell.\n");
@@ -297,8 +282,7 @@ void fitePrince() {
                     printf("> his crown falls off his severed head and into your hands.\n> You've acquired the crown of the dark prince.\n\n");
                     cont();
                     txtdvd();
-                    printf("> Thank you for playing QAdventure!2\n\n");
-                    exit(0);
+                    end();
                     break;
             break;
             }

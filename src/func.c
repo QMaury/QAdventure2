@@ -34,4 +34,9 @@ void cont() {
 /* this one's mainly for testing shit */ 
 void printroom() {
 	printf("%d", &room);
+} 
+
+void end() {
+    printf("Thank you for playing QAdventure2!\n");
+    exit(0);
 }

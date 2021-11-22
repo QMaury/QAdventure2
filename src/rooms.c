@@ -13,6 +13,10 @@ int cKnight = 0;
 int key = 0; 
 int gold = 0;
 
+void dRoom() {       
+    printf("> You find yourself in a somewhat dreadul room. ");
+}
+
 void doRoom0() {
 	txtdvd();
     room = 0;
@@ -29,15 +33,16 @@ void doRoom0() {
 		case 3:
 			room = 4;
 			break;
-        case 222: 
-            printf("Salve!\n");
-            break;
-        case 69:
-            key = 1;
-            gold = 1;
-            break;
         case 9:
             mapPrint();
+            break;
+        case 100:
+            kFWin=1;
+            cSmit = 1;
+            sword1=2;
+            break;
+        case 101:
+            gold=1;
             break;
 		default:
 			invalid();
@@ -90,6 +95,9 @@ void doRoom1() {
                 break;
             case 9:
                 mapPrint();
+                break;
+            case 69:
+                win=1;
                 break;
 			default:
 				invalid();
@@ -189,9 +197,9 @@ void doRoom3() {
 }
 
 void doRoom4() {
-    txtdvd();
-    printf("> You find yourself in a somewhat dreadful room. ");
-	if(wizD == 0) {
+	if(!wizD) {
+        txtdvd();
+        dRoom();
 		printf("There is a magician blocking the paths.\n\n");
 		printf("1) Fight the magician\n2) Go west\n? ");
 		action = getAction();
@@ -210,7 +218,9 @@ void doRoom4() {
 				break;
 		}
 	}
-	if(wizD == 1) {
+	else if(wizD) {
+        txtdvd();
+        dRoom();
 		printf("There is a dead magician on the floor.\n\n");
 		printf("1) Go west\n2) Go south\n3) Go north\n4) Go east\n? ");
 		action = getAction();
@@ -233,7 +243,7 @@ void doRoom4() {
 			default:
 				invalid();
 				break;
-			}
+        }
     }
 		
 }
