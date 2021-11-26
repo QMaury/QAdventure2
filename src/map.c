@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include "func.h"
 #include "rooms.h"
 #include "vars.h"

@@ -17,6 +17,9 @@ void dRoom() {
     printf("> You find yourself in a somewhat dreadul room. ");
 }
 
+void thMerc() {
+    printf("> The mercenary stands before you.\n> ");
+}
 void Qexit() {
     txtdvd();
     printf("> Exit?\n\n1) Yes\n2) No\n? ");
@@ -57,9 +60,7 @@ void doRoom0() {
             mapPrint();
             break;
         case 100:
-            kFWin=1;
-            cSmit = 1;
-            sword1=2;
+            room=3;  
             break;
         case 101:
             gold=1;
@@ -100,7 +101,8 @@ void doRoom1() {
 		}
 	}
 	else if(cKnight && fKnight == 0) {
-		printf("> The mercenary stands before you.\n> There is also a large metal safe behind the mercenary.\n\n");
+        thMerc();
+		printf("There is also a large metal safe behind the mercenary.\n\n");
 		printf("1) Talk to the mercenary\n2) Go south\n3) Try to open the safe\n? ");
 		action = getAction();
 		switch(action) {
@@ -125,7 +127,8 @@ void doRoom1() {
 		}
 	}
 	else if(cKnight && fKnight == 1) {
-		printf("> The mercenary stands before you.\n> There is also a large metal safe behind the mercenary.\n\n");
+        thMerc();
+		printf("There is also a large metal safe behind the mercenary.\n\n");
 		printf("1) Talk to the mercenary\n2) Go south\n3) Try to open the safe\n? ");
 		action = getAction();
 		switch(action) {
@@ -151,7 +154,7 @@ void doRoom1() {
 void doRoom2() {
 	txtdvd();
     printf("> You find yourself in a well lit room.\n");
-	if(ghoulD == 0) {
+	if(ghoulD==0) {
 		printf("> A ghoul blocks your path to the north.\n\n");
 		printf("1) Go east\n2) Fight the ghoul\n? ");
 		action = getAction();
@@ -199,10 +202,10 @@ void doRoom3() {
     action = getAction();
     switch(action) {
         case 1:
-            room = 8;
+            room=8;
             break;
         case 2:
-            room = 2;
+            room=2;
             break;
         case 3:
             talkSmit();

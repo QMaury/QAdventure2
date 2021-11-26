@@ -16,7 +16,7 @@ int action;
 
 int main() {
     ded=0, room=0, sword1=0, kFWin=0, cSmit=0, ghoulD=0, fKnight=0, archD, jacket=0, key=0, wizD, evild, gold=0, draugD;
-	printf("QAdventure2 1.3.9\n\nIt is recommended you use a pen and paper to draw a map as you play.");
+	printf("QAdventure2 1.4.9.1\n\nIt is recommended you use a pen and paper to draw a map as you play.");
 	doRoom0();
 	while (!ded && !evild) {
 	switch (room) {
@@ -69,6 +69,7 @@ int main() {
             }
         } 
     }
+    return 1;
 }
 
 /* "I'll play it later anon and tell you what I think. There better be anime tiddies" - /g/ Anon - 2021/11/12 7:55 */

@@ -20,8 +20,18 @@ int draugD = 0;
 int archD = 0;
 int jacket = 0;
 
+void veryWl() {
+    printf("\n> \"Very well. Perhaps you'll change your mind later.\"\n");
+}
+void heloBoy() {
+    printf("> \"Hello, boy. What can I do for you?\"\n\n");
+}
+
 void swUp() {
     printf("\n> Sword upgraded!\n");
+}
+void duelPrmpt() {
+    printf("1) Yes, duel the knight in hand-to-hand combat\n2) No, leave\n? ");
 }
 void talkKnight() {
 	if(!cKnight && !fKnight && kFWin == 0) {
@@ -29,16 +39,15 @@ void talkKnight() {
 		txtdvd();
 		printf("> \"Hello, adventurer. I see you come for the crown as well.\"\n> \"I would tell you to leave this place, but speaking frankly, I haven't been having too much luck in here.\"\n> \"I'm stuck.\"\n");
 		printf("> \"So, how about this:\"\n> \"We have a hand-to-hand duel, and if you can best me, I'll give you my sword.\"\n\n");
-		
-		printf("1) Yes, duel the knight in hand-to-hand combat\n2) No, leave\n? ");
+		duelPrmpt();
 		cResp = getAction();
 		switch(cResp) {
 			case 1:
 				fiteKnight();
 				break;
 			case 2:
-				printf("\n> \"Very well. Perhaps you'll change your mind later.\"\n");
-                cont();
+                                veryWl();
+                                cont();
 				break;
 			default:
 				invalid();
@@ -49,15 +58,14 @@ void talkKnight() {
 		cKnight = 1;
 		txtdvd();
 		printf("\"You changed your mind?\"\n\n");
-		
-		printf("1) Yes, duel the knight in hand-to-hand combat\n2) No, leave\n? ");
+		duelPrmpt();
 		cResp = getAction();
 		switch(cResp) {
 			case 1:
 				fiteKnight();
 				break;
 			case 2:
-				printf("\n> \"Very well. Perhaps you'll change your mind later.\"\n");
+                                veryWl();
                 cont();
 				break;
 			default:
@@ -92,16 +100,14 @@ void fiteKnight() {
             printf("> The mercenary punches you in the nose.\n> You fall to the ground and crack your head on the floor.\n> You are dead.\n");
             ded=1;
         }
-            printf("> You successfully knock out the mercenary and he falls to the ground dazed and discombobulated.\n> You win the battle.\n\n"); 
-            printf("> \"You've bested me in battle. As promised, I give you my sword.\"\n");
-            printf("> You get the sword!\n");
+        printf("> You successfully knock out the mercenary and he falls to the ground dazed and discombobulated.\n> You win the battle.\n\n> \"You've bested me in battle. As promised, I give you my sword.\"\n");
+        printf("> You get the sword!\n");
 		kFWin = 1;
 		sword1 = 1;
 		cont();
 				
 		}
 	else {
-		fKnight = 1;
 		printf("> The mercenary equips his sword, and stabs you through the belly.\n");
         cont();
 		ded=1;
@@ -126,6 +132,7 @@ void fiteGhoul() {
 void talkSmit() {
 	txtdvd();
 	if(gold && sword1==1) {
+        heloBoy();
 		printf("1) Upgrade sword - 5 gold pieces\n2) Stop talking\n? ");
 		cResp = getAction();
 		switch(cResp) {
@@ -141,15 +148,14 @@ void talkSmit() {
 			default:
 				invalid();
 				break;
-
 		}
 
 	}
 
     else if(sword1==2) {
-		printf("\n>\"Hello, boy. What can I do for you?\"\n\n");
+        heloBoy();
 		printf("1) Stop talking\n? "); 
-		cResp = getAction();
+		cResp=getAction();
 		switch(cResp) {
 			case 1:
 				printf("\n> \"Alright, then. I'll be seeing you.\"\n");
@@ -161,7 +167,7 @@ void talkSmit() {
 	}
 
     else if(cSmit) {
-		printf("> \"Hello, boy. What can I do for you?\"\n\n");
+        heloBoy();
 		printf("1) Stop talking\n? "); 
 		cResp = getAction();
 		switch(cResp) {
