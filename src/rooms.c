@@ -24,6 +24,7 @@ int gold = 0;
  *      }
  *
  * so, in case anyone wants to rewrite this shit for me, you know what to do, kek - 2021-12-09_06:22      */
+
 void dRoom() {       
     printf("> You find yourself in a somewhat dreadul room. ");
 }
@@ -75,9 +76,6 @@ void doRoom0() {
             break;
         case 101:
             gold=1;
-            break;
-            case "lol":
-            printf("lol");
             break;
 		default:
 			invalid();
