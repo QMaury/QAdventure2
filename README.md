@@ -17,3 +17,6 @@ To install, run: `git clone https://github.com/QMaury/QAdventure2.git ; cd QAdve
  
 # WINDOWS USERS:
 Eh, it's in the releases
+
+map doesn't work *exactly* as intended on Windows, and I can't be bothered to find out what's wrong.
+it works good enough
