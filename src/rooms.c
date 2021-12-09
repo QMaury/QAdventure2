@@ -13,6 +13,17 @@ int cKnight = 0;
 int key = 0; 
 int gold = 0;
 
+/* was gonna rewrite some stuff to be faster and to be easier to add on to, but honest to god: it's probably easier to just write a new damn game from scratch.
+ * essentially, i wanna rewrite it so that an enemy in a room is just a *char, instead of being hard-coded into the room to make it slightly easier to change shit around.
+ * so it would be:
+ *
+ *      char *enemy;
+ *      void doRoom69() {
+ *              enemy = "gay retard";
+ *              printf("A %s appears before you!", enemy);
+ *      }
+ *
+ * so, in case anyone wants to rewrite this shit for me, you know what to do, kek - 2021-12-09_06:22      */
 void dRoom() {       
     printf("> You find yourself in a somewhat dreadul room. ");
 }
@@ -64,6 +75,9 @@ void doRoom0() {
             break;
         case 101:
             gold=1;
+            break;
+            case "lol":
+            printf("lol");
             break;
 		default:
 			invalid();
