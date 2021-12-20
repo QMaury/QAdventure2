@@ -20,6 +20,14 @@ int draugD = 0;
 int archD = 0;
 int jacket = 0;
 
+void knWin() {
+        printf("> You successfully knock out the mercenary and he falls to the ground dazed and discombobulated.\n> You win the battle.\n\n> \"You've bested me in battle. As promised, I give you my sword.\"\n");
+        printf("> You get the sword!\n");
+		kFWin = 1;
+		sword1 = 1;
+		cont();
+}
+
 void veryWl() {
     printf("\n> \"Very well. Perhaps you'll change your mind later.\"\n");
 }
@@ -87,24 +95,22 @@ void fiteKnight() {
 		fKnight = 1;
 		printf("> \"Very well. Let's begin\"\n\n");
 		/* maybe change mercenary encounter completely to be something like the guy who gives the estus flask at the beginning of Dark Souls */
-        /* have it just be the corpse of a knight that you get the sword from then; after you get the keys from archer, he's reanimated as ghoul that you fight */
+                /* have it just be the corpse of a knight that you get the sword from then; after you get the keys from archer, he's reanimated as ghoul that you fight */
 		printf("1) Punch face\n2) Kick stomach\n? ");
 		fResp = getAction();
         txtdvd();
         switch(fResp) {
         case 1:
+                knWin();
             break;
         case 2:
+                knWin();
             break;
         default:
             printf("> The mercenary punches you in the nose.\n> You fall to the ground and crack your head on the floor.\n> You are dead.\n");
+            cont();
             ded=1;
         }
-        printf("> You successfully knock out the mercenary and he falls to the ground dazed and discombobulated.\n> You win the battle.\n\n> \"You've bested me in battle. As promised, I give you my sword.\"\n");
-        printf("> You get the sword!\n");
-		kFWin = 1;
-		sword1 = 1;
-		cont();
 				
 		}
 	else {
@@ -256,7 +262,7 @@ void fiteArch() {
 
 void fitePrince() {
     txtdvd();
-    printf("The dark prince slowly rises from his throne and towers above you (How tall is he? 9 feet?), he reaches for his sword.\n\n");
+    printf("> The dark prince slowly rises from his throne and towers above you (How tall is he? 9 feet?), he reaches for his sword.\n\n");
     printf("1) Attack the prince while he reaches for his sword!\n2) Hold your ground\n? ");
     fResp = getAction();
     switch(fResp) {
