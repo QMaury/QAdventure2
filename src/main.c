@@ -15,8 +15,8 @@ int room;
 int action;
 
 int main() {
-    ded=0, room=0, sword1=0, kFWin=0, cSmit=0, ghoulD=0, fKnight=0, archD, jacket=0, key=0, wizD, evild, gold=0, draugD;
-	printf("QAdventure2 1.4.10.1\n\nIt is recommended you use a pen and paper to draw a map as you play.");
+    ded= room= sword1= kFWin=cSmit= ghoulD= fKnight= archD= jacket= key= wizD= evild= gold= draugD = 0;
+	printf("QAdventure2 1.5\n\nIt is recommended you use a pen and paper to draw a map as you play.");
 	doRoom0();
 	while (!ded && !evild) {
 	switch (room) {

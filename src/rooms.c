@@ -12,26 +12,13 @@
 int cKnight = 0;
 int key = 0; 
 int gold = 0;
+char *enemy;
 
-/* was gonna rewrite some stuff to be faster and to be easier to add on to, but honest to god: it's probably easier to just write a new damn game from scratch.
- * essentially, i wanna rewrite it so that an enemy in a room is just a *char, instead of being hard-coded into the room to make it slightly easier to change shit around.
- * so it would be:
- *
- *      char *enemy;
- *      void doRoom69() {
- *              enemy = "gay retard";
- *              printf("A %s appears before you!", enemy);
- *      }
- *
- * so, in case anyone wants to rewrite this shit for me, you know what to do, kek - 2021-12-09_06:22      */
 
 void dRoom() {       
     printf("> You find yourself in a somewhat dreadul room. ");
 }
 
-void thMerc() {
-    printf("> The mercenary stands before you.\n> ");
-}
 void Qexit() {
     txtdvd();
     printf("> Exit?\n\n1) Yes\n2) No\n? ");
@@ -85,8 +72,9 @@ void doRoom0() {
 
 void doRoom1() {
     txtdvd();
+    printf("> There is a mercenary standing before you\n");
 	if(!cKnight) {
-		printf("> A mercenary stands before you.\n> You are unsure of whether or not he is a threat.\n");
+		printf("> You are unsure of whether or not he is a threat.\n");
         printf("> There is also a large metal safe behind the mercenary.\n\n");
 		printf("1) Talk to the mercenary\n2) Go south\n3) Attack the mercenary\n4) Try to open the safe\n? ");
 		action = getAction();
@@ -113,8 +101,8 @@ void doRoom1() {
 		}
 	}
 	else if(cKnight && fKnight == 0) {
-        thMerc();
-		printf("There is also a large metal safe behind the mercenary.\n\n");
+        
+		printf("> There is also a large metal safe behind the mercenary.\n\n");
 		printf("1) Talk to the mercenary\n2) Go south\n3) Try to open the safe\n? ");
 		action = getAction();
 		switch(action) {
@@ -139,8 +127,8 @@ void doRoom1() {
 		}
 	}
 	else if(cKnight && fKnight == 1) {
-        thMerc();
-		printf("There is also a large metal safe behind the mercenary.\n\n");
+        
+		printf("> There is also a large metal safe behind the mercenary.\n\n");
 		printf("1) Talk to the mercenary\n2) Go south\n3) Try to open the safe\n? ");
 		action = getAction();
 		switch(action) {
